@@ -1,0 +1,5 @@
+.vscode/
+debug
+debug.*
+go-learning-tweet-random-search
+MEMO.md
