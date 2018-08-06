@@ -13,7 +13,7 @@ func TestSelectTweet(t *testing.T) {
 	t3 := randTweet{Tweet: twitter.Tweet{FavoriteCount: 5, RetweetCount: 6, Text: "ccc"}}
 	var rts randTweets
 	rts = []randTweet{t1, t2, t3}
-	fmt.Printf("randTweets = %v\n", rts)
 	result := rts.SelectTweet()
-	fmt.Printf("result = %v\n", result.Tweet.Text)
+	fmt.Printf("randTweets = %v\n", rts)
+	fmt.Printf("result text = %v\n", result.Tweet.Text)
 }
