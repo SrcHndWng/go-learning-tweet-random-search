@@ -6,19 +6,20 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/SrcHndWng/go-learning-tweet-random-search/util"
 	"github.com/dghubble/go-twitter/twitter"
 )
 
 func main() {
-	httpClient := createHTTPClient()
-	twitterClient := NewTwitterClient(httpClient)
+	httpClient := util.CreateHTTPClient()
+	twitterClient := util.NewTwitterClient(httpClient)
 
 	demux := twitter.NewSwitchDemux()
-	demux.Tweet = twitterClient.receiveTweet
+	demux.Tweet = twitterClient.ReceiveTweet
 
 	log.Println("Starting Stream...")
 
-	stream, err := twitterClient.filterTweets()
+	stream, err := twitterClient.FilterTweets()
 	if err != nil {
 		log.Fatal(err)
 	}

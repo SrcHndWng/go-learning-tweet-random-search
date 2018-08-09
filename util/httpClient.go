@@ -1,4 +1,4 @@
-package main
+package util
 
 import (
 	"net/http"
@@ -7,7 +7,8 @@ import (
 	"github.com/dghubble/oauth1"
 )
 
-func createHTTPClient() *http.Client {
+// CreateHTTPClient creates a http client.
+func CreateHTTPClient() *http.Client {
 	consumerKey := os.Getenv("TWITTER_CONSUMER_KEY")
 	consumerSecret := os.Getenv("TWITTER_CONSUMER_SECRET")
 	accessToken := os.Getenv("TWITTER_ACCESS_TOKEN")

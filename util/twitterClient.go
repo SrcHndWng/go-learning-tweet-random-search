@@ -1,4 +1,4 @@
-package main
+package util
 
 import (
 	"fmt"
@@ -10,18 +10,20 @@ import (
 	"github.com/dghubble/go-twitter/twitter"
 )
 
-type twitterClient struct {
+// TwitterClient has util methods aboud twitter.
+type TwitterClient struct {
 	client *twitter.Client
 }
 
 // NewTwitterClient creates twitterClient struct
-func NewTwitterClient(httpClient *http.Client) *twitterClient {
-	tc := new(twitterClient)
+func NewTwitterClient(httpClient *http.Client) *TwitterClient {
+	tc := new(TwitterClient)
 	tc.client = twitter.NewClient(httpClient)
 	return tc
 }
 
-func (tc twitterClient) receiveTweet(tweet *twitter.Tweet) {
+// ReceiveTweet defines movements for demux.Tweet.
+func (tc TwitterClient) ReceiveTweet(tweet *twitter.Tweet) {
 	text := tweet.Text
 	log.Printf("receive tweet = %v\n", tweet)
 	searchKeyword := strings.Split(text, " ")[1]
@@ -44,7 +46,8 @@ func (tc twitterClient) receiveTweet(tweet *twitter.Tweet) {
 	}
 }
 
-func (tc twitterClient) filterTweets() (stream *twitter.Stream, err error) {
+// FilterTweets creates filtered stream.
+func (tc TwitterClient) FilterTweets() (stream *twitter.Stream, err error) {
 	// FILTER
 	keyWord := fmt.Sprintf("@%s", os.Getenv("TWITTER_ACCOUNT"))
 	filterParams := &twitter.StreamFilterParams{
